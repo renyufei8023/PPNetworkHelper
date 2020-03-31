@@ -30,7 +30,7 @@
  */
 
 #import "ViewController.h"
-#import "PPNetworkHelper.h"
+#import "DDNetworkHelper.h"
 #import "PPHTTPRequest.h"
 #import "AFNetworking.h"
 
@@ -87,10 +87,10 @@ static NSString *const downloadUrl = @"http://wvideo.spriteapp.cn/video/2016/032
      */
     
     // 开启日志打印
-    [PPNetworkHelper openLog];
+    [DDNetworkHelper openLog];
     
     // 获取网络缓存大小
-    PPLog(@"网络缓存大小cache = %fKB",[PPNetworkCache getAllHttpCacheSize]/1024.f);
+    PPLog(@"网络缓存大小cache = %fKB",[DDNetworkCache getAllHttpCacheSize]/1024.f);
     
     // 清理缓存 [PPNetworkCache removeAllHttpCache];
     
@@ -144,7 +144,7 @@ static NSString *const downloadUrl = @"http://wvideo.spriteapp.cn/video/2016/032
     {
         self.cacheStatus.text = @"缓存打开";
         self.cacheSwitch.on = YES;
-        [PPNetworkHelper GET:url parameters:para responseCache:^(id responseCache) {
+        [DDNetworkHelper GET:url parameters:para headers:nil responseCache:^(id responseCache) {
             // 1.先加载缓存数据
             self.cacheData.text = [self jsonToString:responseCache];
         } success:^(id responseObject) {
@@ -162,7 +162,7 @@ static NSString *const downloadUrl = @"http://wvideo.spriteapp.cn/video/2016/032
         self.cacheSwitch.on = NO;
         self.cacheData.text = @"";
         
-        [PPNetworkHelper GET:url parameters:para success:^(id responseObject) {
+        [DDNetworkHelper GET:url parameters:para headers:nil success:^(id responseObject) {
             self.networkData.text = [self jsonToString:responseObject];
         } failure:^(NSError *error) {
             
@@ -175,7 +175,7 @@ static NSString *const downloadUrl = @"http://wvideo.spriteapp.cn/video/2016/032
 - (void)monitorNetworkStatus
 {
     // 网络状态改变一次, networkStatusWithBlock就会响应一次
-    [PPNetworkHelper networkStatusWithBlock:^(PPNetworkStatusType networkStatus) {
+    [DDNetworkHelper networkStatusWithBlock:^(PPNetworkStatusType networkStatus) {
         
         switch (networkStatus) {
                 // 未知网络
@@ -236,7 +236,7 @@ static NSString *const downloadUrl = @"http://wvideo.spriteapp.cn/video/2016/032
         self.download = YES;
         [self.downloadBtn setTitle:@"取消下载" forState:UIControlStateNormal];
         
-        task = [PPNetworkHelper downloadWithURL:downloadUrl fileDir:@"Download" progress:^(NSProgress *progress) {
+        task = [DDNetworkHelper downloadWithURL:downloadUrl fileDir:@"Download" progress:^(NSProgress *progress) {
             
             CGFloat stauts = 100.f * progress.completedUnitCount/progress.totalUnitCount;
             self.progress.progress = stauts/100.f;
