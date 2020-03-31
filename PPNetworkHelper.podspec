@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/renyufei8023/PPNetworkHelper.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/renyufei8023/DDNetworkHelper.git", :tag => s.version.to_s }
 
   s.source_files = "DDNetworkHelper/DDNetworkHelper/*.{h,m}"
   
