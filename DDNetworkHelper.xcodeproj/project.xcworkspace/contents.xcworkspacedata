@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PPNetworkHelper.xcodeproj">
+      location = "self:DDNetworkHelper.xcodeproj">
    </FileRef>
 </Workspace>

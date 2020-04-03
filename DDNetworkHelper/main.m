@@ -1,16 +1,19 @@
 //
 //  main.m
-//  PPNetworkHelper
+//  DDNetworkHelper
 //
-//  Created by AndyPang on 16/8/12.
-//  Copyright © 2016年 AndyPang. All rights reserved.
+//  Created by dudu on 2020/4/3.
+//  Copyright © 2020 dudu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        // Setup code that might create autoreleased objects goes here.
+        appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }

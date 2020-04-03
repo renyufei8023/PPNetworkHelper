@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SceneDelegate.h
 //  DDNetworkHelper
 //
 //  Created by dudu on 2020/4/3.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
 
+@property (strong, nonatomic) UIWindow * window;
 
 @end
 

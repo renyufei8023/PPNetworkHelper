@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "jkpang" => "jkpang@outlook.com" }
 
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/renyufei8023/DDNetworkHelper.git", :tag => s.version.to_s }
 
