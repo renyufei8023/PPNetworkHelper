@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DDNetworkHelper"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "AFNetworking 4.x 与YYCache封装,一句代码搞定数据请求与缓存,告别FMDB!控制台直接打印json中文字符,调试更方便"
 
   s.homepage     = "https://github.com/renyufei8023/PPNetworkHelper.git"
