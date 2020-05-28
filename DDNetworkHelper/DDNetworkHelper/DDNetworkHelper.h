@@ -42,29 +42,29 @@
 #define kIsWiFiNetwork [DDNetworkHelper isWiFiNetwork]  // 一次性判断是否为WiFi网络的宏
 #endif
 
-typedef NS_ENUM(NSUInteger, PPNetworkStatusType) {
+typedef NS_ENUM(NSUInteger, DDNetworkStatusType) {
     /// 未知网络
-    PPNetworkStatusUnknown,
+    DDNetworkStatusUnknown,
     /// 无网络
-    PPNetworkStatusNotReachable,
+    DDNetworkStatusNotReachable,
     /// 手机网络
-    PPNetworkStatusReachableViaWWAN,
+    DDNetworkStatusReachableViaWWAN,
     /// WIFI网络
-    PPNetworkStatusReachableViaWiFi
+    DDNetworkStatusReachableViaWiFi
 };
 
-typedef NS_ENUM(NSUInteger, PPRequestSerializer) {
+typedef NS_ENUM(NSUInteger, DDRequestSerializer) {
     /// 设置请求数据为JSON格式
-    PPRequestSerializerJSON,
+    DDRequestSerializerJSON,
     /// 设置请求数据为二进制格式
-    PPRequestSerializerHTTP,
+    DDRequestSerializerHTTP,
 };
 
-typedef NS_ENUM(NSUInteger, PPResponseSerializer) {
+typedef NS_ENUM(NSUInteger, DDResponseSerializer) {
     /// 设置响应数据为JSON格式
-    PPResponseSerializerJSON,
+    DDResponseSerializerJSON,
     /// 设置响应数据为二进制格式
-    PPResponseSerializerHTTP,
+    DDResponseSerializerHTTP,
 };
 
 /// 请求成功的Block
@@ -80,7 +80,7 @@ typedef void(^PPHttpRequestCache)(id responseCache);
 typedef void (^PPHttpProgress)(NSProgress *progress);
 
 /// 网络状态的Block
-typedef void(^PPNetworkStatus)(PPNetworkStatusType status);
+typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
 
 @class AFHTTPSessionManager;
 @interface DDNetworkHelper : NSObject
@@ -286,14 +286,14 @@ typedef void(^PPNetworkStatus)(PPNetworkStatusType status);
  *
  *  @param requestSerializer PPRequestSerializerJSON(JSON格式),PPRequestSerializerHTTP(二进制格式),
  */
-+ (void)setRequestSerializer:(PPRequestSerializer)requestSerializer;
++ (void)setRequestSerializer:(DDRequestSerializer)requestSerializer;
 
 /**
  *  设置服务器响应数据格式:默认为JSON格式
  *
  *  @param responseSerializer PPResponseSerializerJSON(JSON格式),PPResponseSerializerHTTP(二进制格式)
  */
-+ (void)setResponseSerializer:(PPResponseSerializer)responseSerializer;
++ (void)setResponseSerializer:(DDResponseSerializer)responseSerializer;
 
 /**
  *  设置请求超时时间:默认为30S

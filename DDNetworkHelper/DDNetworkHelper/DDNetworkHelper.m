@@ -31,19 +31,19 @@ static AFHTTPSessionManager *_sessionManager;
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusUnknown:
-                networkStatus ? networkStatus(PPNetworkStatusUnknown) : nil;
+                networkStatus ? networkStatus(DDNetworkStatusUnknown) : nil;
                 if (_isOpenLog) PPLog(@"未知网络");
                 break;
             case AFNetworkReachabilityStatusNotReachable:
-                networkStatus ? networkStatus(PPNetworkStatusNotReachable) : nil;
+                networkStatus ? networkStatus(DDNetworkStatusNotReachable) : nil;
                 if (_isOpenLog) PPLog(@"无网络");
                 break;
             case AFNetworkReachabilityStatusReachableViaWWAN:
-                networkStatus ? networkStatus(PPNetworkStatusReachableViaWWAN) : nil;
+                networkStatus ? networkStatus(DDNetworkStatusReachableViaWWAN) : nil;
                 if (_isOpenLog) PPLog(@"手机自带网络");
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                networkStatus ? networkStatus(PPNetworkStatusReachableViaWiFi) : nil;
+                networkStatus ? networkStatus(DDNetworkStatusReachableViaWiFi) : nil;
                 if (_isOpenLog) PPLog(@"WIFI");
                 break;
         }
@@ -328,12 +328,18 @@ static AFHTTPSessionManager *_sessionManager;
     sessionManager ? sessionManager(_sessionManager) : nil;
 }
 
-+ (void)setRequestSerializer:(PPRequestSerializer)requestSerializer {
-    _sessionManager.requestSerializer = requestSerializer==PPRequestSerializerHTTP ? [AFHTTPRequestSerializer serializer] : [AFJSONRequestSerializer serializer];
++ (void)setRequestSerializer:(DDRequestSerializer)requestSerializer {
+    _sessionManager.requestSerializer = requestSerializer == DDRequestSerializerHTTP ? [AFHTTPRequestSerializer serializer] : [AFJSONRequestSerializer serializer];
 }
 
-+ (void)setResponseSerializer:(PPResponseSerializer)responseSerializer {
-    _sessionManager.responseSerializer = responseSerializer==PPResponseSerializerHTTP ? [AFHTTPResponseSerializer serializer] : [AFJSONResponseSerializer serializer];
++ (void)setResponseSerializer:(DDResponseSerializer)responseSerializer {
+    if (responseSerializer == DDResponseSerializerHTTP) {
+        _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    }else {
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+        jsonResponseSerializer.removesKeysWithNullValues = YES;
+        _sessionManager.responseSerializer = jsonResponseSerializer;
+    }
 }
 
 + (void)setRequestTimeoutInterval:(NSTimeInterval)time {
