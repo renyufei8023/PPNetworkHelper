@@ -128,6 +128,25 @@ typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
                            failure:(PPHttpRequestFailed)failure;
 
 /**
+ *  GET请求,无缓存
+ *
+ *  @param URL        请求地址
+ *  @param parameters 请求参数
+ *  @param headers    请求头
+ *  @param progress   请求进度
+ *  @param success    请求成功的回调
+ *  @param failure    请求失败的回调
+ *
+ *  @return 返回的对象可取消请求,调用cancel方法
+ */
++ (__kindof NSURLSessionTask *)GET:(NSString *)URL
+                        parameters:(id)parameters
+                           headers:(NSDictionary <NSString *, NSString *> *)headers
+                          progress:(PPHttpProgress)progress
+                           success:(PPHttpRequestSuccess)success
+                           failure:(PPHttpRequestFailed)failure;
+
+/**
  *  GET请求,自动缓存
  *
  *  @param URL           请求地址
@@ -147,6 +166,27 @@ typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
                            failure:(PPHttpRequestFailed)failure;
 
 /**
+ *  GET请求,自动缓存
+ *
+ *  @param URL           请求地址
+ *  @param parameters    请求参数
+ *  @param headers       请求头
+ *  @param responseCache 缓存数据的回调
+ *  @param progress      缓存数据的进度
+ *  @param success       请求成功的回调
+ *  @param failure       请求失败的回调
+ *
+ *  @return 返回的对象可取消请求,调用cancel方法
+ */
++ (__kindof NSURLSessionTask *)GET:(NSString *)URL
+                        parameters:(id)parameters
+                           headers:(NSDictionary <NSString *, NSString *> *)headers
+                     responseCache:(PPHttpRequestCache)responseCache
+                          progress:(PPHttpProgress)progress
+                           success:(PPHttpRequestSuccess)success
+                           failure:(PPHttpRequestFailed)failure;
+
+/**
  *  POST请求,无缓存
  *
  *  @param URL        请求地址
@@ -160,6 +200,25 @@ typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
 + (__kindof NSURLSessionTask *)POST:(NSString *)URL
                          parameters:(id)parameters
                             headers:(NSDictionary <NSString *, NSString *> *)headers
+                            success:(PPHttpRequestSuccess)success
+                            failure:(PPHttpRequestFailed)failure;
+
+/**
+ *  POST请求,无缓存
+ *
+ *  @param URL        请求地址
+ *  @param parameters 请求参数
+ *  @param headers    请求头
+ *  @param progress   请求进度
+ *  @param success    请求成功的回调
+ *  @param failure    请求失败的回调
+ *
+ *  @return 返回的对象可取消请求,调用cancel方法
+ */
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                         parameters:(id)parameters
+                            headers:(NSDictionary <NSString *, NSString *> *)headers
+                           progress:(PPHttpProgress)progress
                             success:(PPHttpRequestSuccess)success
                             failure:(PPHttpRequestFailed)failure;
 
@@ -182,6 +241,13 @@ typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
                             success:(PPHttpRequestSuccess)success
                             failure:(PPHttpRequestFailed)failure;
 
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                         parameters:(id)parameters
+                            headers:(NSDictionary <NSString *, NSString *> *)headers
+                      responseCache:(PPHttpRequestCache)responseCache
+                           progress:(PPHttpProgress)progress
+                            success:(PPHttpRequestSuccess)success
+                            failure:(PPHttpRequestFailed)failure;
 /**
  *  上传文件
  *

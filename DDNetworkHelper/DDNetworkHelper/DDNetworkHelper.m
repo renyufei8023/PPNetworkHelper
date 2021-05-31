@@ -100,7 +100,24 @@ static AFHTTPSessionManager *_sessionManager;
                   headers:(NSDictionary<NSString *,NSString *> *)headers
                   success:(PPHttpRequestSuccess)success
                   failure:(PPHttpRequestFailed)failure {
-    return [self GET:URL parameters:parameters headers:headers responseCache:nil success:success failure:failure];
+    return [self GET:URL parameters:parameters headers:headers responseCache:nil progress:nil success:success failure:failure];
+}
+
++ (__kindof NSURLSessionTask *)GET:(NSString *)URL
+                        parameters:(id)parameters headers:(NSDictionary<NSString *,NSString *> *)headers
+                     responseCache:(PPHttpRequestCache)responseCache
+                           success:(PPHttpRequestSuccess)success
+                           failure:(PPHttpRequestFailed)failure {
+    return [self GET:URL parameters:parameters headers:headers responseCache:nil progress:nil success:success failure:failure];
+}
+
++ (__kindof NSURLSessionTask *)GET:(NSString *)URL
+                        parameters:(id)parameters
+                           headers:(NSDictionary<NSString *,NSString *> *)headers
+                          progress:(PPHttpProgress)progress
+                           success:(PPHttpRequestSuccess)success
+                           failure:(PPHttpRequestFailed)failure {
+    return [self GET:URL parameters:parameters headers:headers responseCache:nil progress:progress success:success failure:failure];
 }
 
 #pragma mark - POST请求无缓存
@@ -109,7 +126,22 @@ static AFHTTPSessionManager *_sessionManager;
                    headers:(NSDictionary<NSString *,NSString *> *)headers
                    success:(PPHttpRequestSuccess)success
                    failure:(PPHttpRequestFailed)failure {
-    return [self POST:URL parameters:parameters headers:headers responseCache:nil success:success failure:failure];
+    return [self POST:URL parameters:parameters headers:headers responseCache:nil progress:nil success:success failure:failure];
+}
+
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                         parameters:(id)parameters headers:(NSDictionary<NSString *,NSString *> *)headers progress:(PPHttpProgress)progress
+                            success:(PPHttpRequestSuccess)success
+                            failure:(PPHttpRequestFailed)failure {
+    return [self POST:URL parameters:parameters headers:headers responseCache:nil progress:progress success:success failure:failure];
+}
+
++ (__kindof NSURLSessionTask *)POST:(NSString *)URL
+                         parameters:(id)parameters headers:(NSDictionary<NSString *,NSString *> *)headers
+                      responseCache:(PPHttpRequestCache)responseCache
+                            success:(PPHttpRequestSuccess)success
+                            failure:(PPHttpRequestFailed)failure {
+    return [self POST:URL parameters:parameters headers:headers responseCache:nil progress:nil success:success failure:failure];
 }
 
 #pragma mark - GET请求自动缓存
@@ -117,13 +149,16 @@ static AFHTTPSessionManager *_sessionManager;
                parameters:(id)parameters
                   headers:(NSDictionary<NSString *,NSString *> *)headers
             responseCache:(PPHttpRequestCache)responseCache
+                 progress:(PPHttpProgress)progress
                   success:(PPHttpRequestSuccess)success
                   failure:(PPHttpRequestFailed)failure {
     //读取缓存
     responseCache!=nil ? responseCache([DDNetworkCache httpCacheForURL:URL parameters:parameters]) : nil;
     
     NSURLSessionTask *sessionTask = [_sessionManager GET:URL parameters:parameters headers:headers progress:^(NSProgress * _Nonnull downloadProgress) {
-        
+        if (progress) {
+            progress(downloadProgress);
+        }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (_isOpenLog) {PPLog(@"responseObject = %@",responseObject);}
         [[self allSessionTask] removeObject:task];
@@ -146,13 +181,16 @@ static AFHTTPSessionManager *_sessionManager;
                 parameters:(id)parameters
                    headers:(NSDictionary<NSString *,NSString *> *)headers
              responseCache:(PPHttpRequestCache)responseCache
+                  progress:(PPHttpProgress)progress
                    success:(PPHttpRequestSuccess)success
                    failure:(PPHttpRequestFailed)failure {
     //读取缓存
     responseCache!=nil ? responseCache([DDNetworkCache httpCacheForURL:URL parameters:parameters]) : nil;
     
     NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+        if (progress) {
+            progress(uploadProgress);
+        }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (_isOpenLog) {PPLog(@"responseObject = %@",responseObject);}
         [[self allSessionTask] removeObject:task];

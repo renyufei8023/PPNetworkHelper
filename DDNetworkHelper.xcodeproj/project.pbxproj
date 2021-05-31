@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53990ED5057FC7A7316ACA94 /* libPods-DDNetworkHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E0E156E30247336379C8F2B /* libPods-DDNetworkHelper.a */; };
 		87FB211924370C790041A128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB211824370C790041A128 /* AppDelegate.m */; };
 		87FB211C24370C790041A128 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB211B24370C790041A128 /* SceneDelegate.m */; };
 		87FB211F24370C790041A128 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB211E24370C790041A128 /* ViewController.m */; };
@@ -16,10 +17,10 @@
 		87FB212A24370C800041A128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB212924370C800041A128 /* main.m */; };
 		87FB213524370E530041A128 /* DDNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB213324370E530041A128 /* DDNetworkHelper.m */; };
 		87FB213624370E530041A128 /* DDNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FB213424370E530041A128 /* DDNetworkCache.m */; };
-		B3DECFCE17B0F2C140C3F20A /* Pods_DDNetworkHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F21D982F90202A22F6A26B /* Pods_DDNetworkHelper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E0E156E30247336379C8F2B /* libPods-DDNetworkHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDNetworkHelper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FB211424370C790041A128 /* DDNetworkHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDNetworkHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FB211724370C790041A128 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87FB211824370C790041A128 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -36,7 +37,6 @@
 		87FB213224370E530041A128 /* DDNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNetworkCache.h; sourceTree = "<group>"; };
 		87FB213324370E530041A128 /* DDNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNetworkHelper.m; sourceTree = "<group>"; };
 		87FB213424370E530041A128 /* DDNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNetworkCache.m; sourceTree = "<group>"; };
-		88F21D982F90202A22F6A26B /* Pods_DDNetworkHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DDNetworkHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0576EFFF32CDA6A960A209 /* Pods-DDNetworkHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDNetworkHelper.release.xcconfig"; path = "Target Support Files/Pods-DDNetworkHelper/Pods-DDNetworkHelper.release.xcconfig"; sourceTree = "<group>"; };
 		D15D31EDBB9FA07F111C552E /* Pods-DDNetworkHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDNetworkHelper.debug.xcconfig"; path = "Target Support Files/Pods-DDNetworkHelper/Pods-DDNetworkHelper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3DECFCE17B0F2C140C3F20A /* Pods_DDNetworkHelper.framework in Frameworks */,
+				53990ED5057FC7A7316ACA94 /* libPods-DDNetworkHelper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +114,7 @@
 		E496A7E6EB4E6E2E6864B46C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88F21D982F90202A22F6A26B /* Pods_DDNetworkHelper.framework */,
+				4E0E156E30247336379C8F2B /* libPods-DDNetworkHelper.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,7 +130,6 @@
 				87FB211024370C790041A128 /* Sources */,
 				87FB211124370C790041A128 /* Frameworks */,
 				87FB211224370C790041A128 /* Resources */,
-				2A99FFBF1322FDD5D0E8D4B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,23 +186,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A99FFBF1322FDD5D0E8D4B3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DDNetworkHelper/Pods-DDNetworkHelper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DDNetworkHelper/Pods-DDNetworkHelper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DDNetworkHelper/Pods-DDNetworkHelper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8BA7AC8A0F8CD366362B3253 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
