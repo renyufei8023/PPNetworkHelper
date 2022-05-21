@@ -243,6 +243,38 @@ static AFHTTPSessionManager *_sessionManager;
     return sessionTask;
 }
 
++ (__kindof NSURLSessionTask *)uploadVideoWithURL:(NSString *)URL
+                                       parameters:(id)parameters
+                                          headers:(NSDictionary<NSString *,NSString *> *)headers
+                                             name:(NSString *)name
+                                             data:(NSData *)data
+                                         mimeType:(NSString *)mimeType
+                                         progress:(PPHttpProgress)progress
+                                          success:(PPHttpRequestSuccess)success
+                                          failure:(PPHttpRequestFailed)failure {
+    NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters headers:headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:data name:name fileName:name mimeType:mimeType];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        //上传进度
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            progress ? progress(uploadProgress) : nil;
+        });
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (_isOpenLog) {PPLog(@"responseObject = %@",responseObject);}
+        [[self allSessionTask] removeObject:task];
+        success ? success(responseObject) : nil;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (_isOpenLog) {PPLog(@"error = %@",error);}
+        [[self allSessionTask] removeObject:task];
+        failure ? failure(error) : nil;
+    }];
+    
+    // 添加sessionTask到数组
+    sessionTask ? [[self allSessionTask] addObject:sessionTask] : nil ;
+    
+    return sessionTask;
+}
+
 #pragma mark - 上传多张图片
 + (NSURLSessionTask *)uploadImagesWithURL:(NSString *)URL
                                parameters:(id)parameters

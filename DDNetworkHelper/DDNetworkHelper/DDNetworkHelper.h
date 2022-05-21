@@ -272,6 +272,30 @@ typedef void(^PPNetworkStatus)(DDNetworkStatusType status);
                                          failure:(PPHttpRequestFailed)failure;
 
 /**
+ *  上传视频
+ *
+ *  @param URL        请求地址
+ *  @param parameters 请求参数
+ *  @param headers    请求头
+ *  @param data       文件对应服务器上的字节
+ *  @param mimeType   文件类型
+ *  @param progress   上传进度信息
+ *  @param success    请求成功的回调
+ *  @param failure    请求失败的回调
+ *
+ *  @return 返回的对象可取消请求,调用cancel方法
+ */
++ (__kindof NSURLSessionTask *)uploadVideoWithURL:(NSString *)URL
+                                       parameters:(id)parameters
+                                          headers:(NSDictionary <NSString *, NSString *> *)headers
+                                             name:(NSString *)name
+                                             data:(NSData *)data
+                                         mimeType:(NSString *)mimeType
+                                         progress:(PPHttpProgress)progress
+                                          success:(PPHttpRequestSuccess)success
+                                          failure:(PPHttpRequestFailed)failure;
+
+/**
  *  上传单/多张图片
  *
  *  @param URL        请求地址
